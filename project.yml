@@ -12,6 +12,7 @@ targets:
   TrasaGPS:
     type: application
     platform: iOS
+    scheme: {}
     sources:
       - TrasaGPS
     settings:
