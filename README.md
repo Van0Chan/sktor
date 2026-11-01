@@ -1,63 +1,55 @@
-# 🎬 SKTorrent Stremio Addon
+# TrasaGPS
 
-Neoficiálny Stremio doplnok pre vyhľadávanie a streamovanie filmov a seriálov z populárneho slovenského trackera **SKTorrent.eu**. Addon funguje na princípe vlastnej konfigurácie – každý používateľ si zadáva svoje vlastné prihlasovacie údaje (cookies) z SKTorrentu.
+iOS aplikácia (SwiftUI, iOS 17+) na živé GPS, nahrávanie a plánovanie trás, štatistiky a simuláciu pohybu po trase.
 
-## 🚀 Inštalácia (Dostupné inštancie)
+## Funkcie
 
-Addon si môžeš nainštalovať a nakonfigurovať na jednej z týchto verejne bežiacich inštancií:
+**Mapa**
+- Živá poloha: súradnice (s kopírovaním), rýchlosť, nadmorská výška, presnosť a smer
+- Štandardná, hybridná a satelitná mapa, 3D, kompas a mierka
+- Nahrávanie trasy so štartom, pauzou a stopom, aj na pozadí. Zobrazuje čas, vzdialenosť a počet bodov a po skončení ponúkne uloženie trasy.
 
-🔗 **[Genez.io Inštancia Nefunkčné](https://bda31382-bef9-4743-b2e2-e9838ecb6690.eu-central-1.cloud.genez.io/)**  
-🔗 **[Koyeb Inštancia](https://managerial-karol-zasaonsk-d57eb595.koyeb.app/)**  
+**Plánovač**
+- Body trasy pridávaš ťukaním na mapu
+- Režimy: priamo, po cestách (auto) alebo pešo (trasovanie cez Apple Mapy)
+- Hľadanie miesta alebo adresy a jeho pridanie ako bodu
+- Späť, obrátenie smeru, uzavretie okruhu, vymazanie
+- Dĺžka trasy a odhad času pri zvolenej rýchlosti
+- Uloženie trasy alebo okamžitá simulácia
 
-*Vyber si ktorúkoľvek, obe obsahujú rovnakú verziu addonu.*
+**Simulácia trasy**
+- Značka sa pohybuje po trase so smerovou šípkou
+- Rýchlosti: chôdza, beh, bicykel, auto, diaľnica, alebo vlastná 1 až 200 km/h
+- Spustenie a pauza, posúvanie po trase, návrat na začiatok, opakovanie a režim tam a späť
+- Kamera sleduje simulovanú polohu, zobrazuje sa prejdená vzdialenosť a zostávajúci čas
 
----
+**Trasy**
+- Zoznam s vyhľadávaním a filtrom (nahraté, naplánované, importované) a mazaním
+- Detail trasy: mapa so štartom a cieľom, premenovanie a štatistiky (dĺžka, trvanie, priemerná a maximálna rýchlosť, stúpanie a klesanie, minimálna a maximálna výška, počet bodov)
+- Graf výškového profilu
+- Vytvorenie spiatočnej trasy
+- Import GPX (track, route aj waypointy). GPX súbor sa dá otvoriť aj priamo z aplikácie Súbory.
+- Export GPX a **export pre Xcode**: časy bodov sú prepočítané podľa rýchlosti, takže súbor sa dá použiť v Debug ▸ Simulate Location
 
-## ⭐ Hlavné funkcie a vlastnosti
+**Nastavenia**
+- Metrické alebo imperiálne jednotky, typ mapy
+- Predvolená rýchlosť simulácie, opakovanie, tam a späť
+- Filter presnosti GPS a minimálna vzdialenosť medzi bodmi pri nahrávaní
 
-*   ⚡ **Podpora TorBox (Debrid/Cache)**: Ak vložíš svoj TorBox API kľúč, addon automaticky overí, či je torrent už stiahnutý na serveroch TorBoxu. Ak áno, streamuje sa okamžite priamo z ich serverov (označené ako `[TB ⚡]`).
-*   🔍 **Smart vyhľadávanie cez ČSFD**: Addon obsahuje vlastný scraper, ktorý dokáže nájsť presný film alebo seriál na základe ČSFD ID. Prehľadáva až 20 stránok výsledkov pre zaručené nájdenie aj starších epizód.
-*   🧠 **Pokročilý Regex pre SK/CZ seriály**: Rozpoznáva obrovské množstvo našských formátov seriálov (napr. `S01E01`, `1x01`, `1. - 4. serie`, `1. Epizoda`, `105.Epizóda`, `Pack`, `Komplet`). Automaticky extrahuje správny video súbor aj z veľkých gigabajtových packov.
-*   🎥 **Detailné informácie o streame**: Priamo v Stremio vidíš krásne naformátované dáta:
-    *   **Kvalita & Formát:** 4K, 1080p, HDR, Dolby Vision, HEVC, H.264, Atmos...
-    *   **Jazyk (Vlajky):** 🇸🇰 🇨🇿 🇬🇧 🇺🇸 na základe analýzy názvu.
-    *   **Veľkosť:** Skutočná veľkosť daného video súboru + veľkosť celého torrentu.
-*   🌐 **TMDB a Cinemeta integrácia**: Hľadá podľa pôvodného aj preloženého (českého/slovenského) názvu pre maximálnu presnosť výsledkov.
+## Spustenie
 
----
-
-## ⚙️ Ako získať údaje pre konfiguráciu (UID a PASS)
-
-Aby addon fungoval, potrebuješ mať účet na SKTorrent.eu. Addon pre svoju funkčnosť vyžaduje hodnoty z tvojich **Cookies** (`uid` a `pass`).
-
-**Postup pre Chrome/Edge/Firefox:**
-1. Otvor si stránku [sktorrent.eu](https://sktorrent.eu) a prihlás sa.
-2. Stlač klávesu `F12` (otvoria sa Vývojárske nástroje / Developer Tools).
-3. Choď do záložky **Application** (Aplikácia) / **Storage** (Uložisko) -> vľavo v menu rozbaľ **Cookies** a klikni na `https://sktorrent.eu`.
-4. V tabuľke nájdi riadok s názvom `uid` a skopíruj si jeho hodnotu (napr. `123456`).
-5. Nájdi riadok s názvom `pass` a skopíruj si jeho hodnotu (dlhý alfanumerický reťazec).
-6. Tieto dva údaje vlož do konfiguračného okna na jednej z webových inštancií vyššie a vygeneruj si inštalačný odkaz.
-
-*(Voliteľné: Pre najlepší zážitok odporúčame pridať aj TorBox API kľúč a TMDB API kľúč).*
-
----
-
-## 👨‍💻 Pre vývojárov (Lokálne spustenie)
-
-Ak si chceš addon spustiť lokálne alebo upravovať kód:
+Potrebuješ Mac s Xcode 15 alebo novším.
 
 ```bash
-# Naklonovanie repozitára
-git clone https://github.com/ZASAonSK/Cz-SkTorrent-Stremio-Addon.git
-cd Cz-SkTorrent-Stremio-Addon
-
-# Inštalácia závislostí
-npm install
-
-# Spustenie servera
-npm start
-
-Server štandardne pobeží na porte 7000. Konfiguračnú stránku nájdeš na http://localhost:7000/.
+brew install xcodegen
+xcodegen generate
+open TrasaGPS.xcodeproj
 ```
-⚠️ Upozornenie: Tento addon slúži len na technické, vzdelávacie a vyhľadávacie účely. Addon neobsahuje žiadne mediálne súbory, len spracováva a formátuje metadáta dostupné na internete na základe požiadavky používateľa.
 
+V Xcode vyber v *Signing & Capabilities* svoj tím (Team) a spusti aplikáciu na iPhone alebo v simulátore.
+
+Bez XcodeGen: v Xcode vytvor nový projekt *iOS App* (SwiftUI, SwiftData), nahraď jeho súbory obsahom priečinka `TrasaGPS/` a v Build Settings nastav `INFOPLIST_FILE = TrasaGPS/Resources/Info.plist`.
+
+## Poznámka
+
+Aplikácia nemení systémovú polohu iPhonu pre iné aplikácie, to iOS bežnej aplikácii nedovolí. Na simuláciu polohy celého zariadenia počas vývoja použi export pre Xcode.
